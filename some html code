@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Orders Page</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+<div class="headingSection">
+<h1>Winter Wollies</h1>
+<h1>Home knitting delivered to your door.</h1>
+</div>
+
+<div class="contentSection">
+<p>most orders are delivered within 4 weeks</p>
+<p>you can pay using <a id="paymentlink" href="www.Payfind.com">ww.payfind.com</a></p>
+<p>to request an order please email winter.woollies@hotmail.com</p>
+<img scr="parcel,jpg" class="parcelImage">
+</div>
+
+<div class="linksSection">
+<ul>
+<li><a href="home.html">home</a></li>
+</ul>
+</div>
+<img src="banner.jpg" class="bannerImage">
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<style>
+/* Background Colours */
+body{background-color:Black}
+
+/* Text Properties */
+h1 {font-family:Helvetica;
+text-align:center;
+color:Red;
+font-size:30pt}
+
+h2 {font-family:Helvetica;
+text-align:left;
+color :Black;
+font-size:12pt}
+
+p {font-family:Helvetica;
+text-align:left;
+color :Black;
+font-size:10pt}
+
+/* IDs */ 
+#paymentLink{color: white; font-size: 12px;}
+
+/* Classes */ 
+.headingSection {background-color:DeepSkyBlue}
+.contentSection {background-color:DeepSkyBlue}
+.linksSection {background-color:DeepSkyBlue}
+.bannerImage {width:500px;height:60px}
+.parcelImage {width:200px;height:100px}
+ 
+</style>
