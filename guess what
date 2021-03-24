@@ -1,0 +1,103 @@
+Imports System.IO
+Public Class Form1
+    Private Sub btnReadcsv_Click(sender As Object, e As EventArgs) Handles btnReadcsv.Click
+
+        Dim mObj As Object = Read_Csv()
+        Dim entryID(30), jump(30) As Integer
+        Dim strLocation(30), strForename(30), strSurname(30) As String
+        entryID = mObj(0)
+        strLocation = mObj(1)
+        strForename = mObj(2)
+        strSurname = mObj(3)
+        jump = mObj(4)
+
+        Populate_Datagrind(entryID, strLocation, strForename, strSurname, jump)
+        Dim max_value As Integer
+        max_value = Maximum_Jump(jump)
+        TextBox1.Text = max_value
+
+        Dim itemindex As Int32 = Array.IndexOf(jump, max_value)
+        TextBox2.Text = strForename(itemindex)
+        TextBox3.Text = strSurname(itemindex)
+
+    End Sub
+
+    Private Function Read_Csv() As Object
+
+        Dim path As String = "C:\pacs\jumps.csv"
+
+        Dim entryID(30), jump(30) As Integer
+        Dim strLocation(30), strForename(30), strSurname(30) As String
+
+        Dim stReader As StreamReader
+
+        stReader = New StreamReader(path)
+        Dim i As Integer = 0
+        Do Until stReader.Peek = -1
+
+
+            Dim line As String = stReader.ReadLine
+            Dim separators() As String = {","}
+            Dim output() As String = line.Split(separators, StringSplitOptions.RemoveEmptyEntries)
+            entryID(i) = Convert.ToInt32(output(0))
+            strLocation(i) = output(1)
+            strForename(i) = output(2)
+            strSurname(i) = output(3)
+            jump(i) = Convert.ToInt32(output(4))
+
+            i += 1
+
+
+        Loop
+
+        stReader.Close()
+
+
+        Return {entryID, strLocation, strForename, strSurname, jump, True}
+
+
+
+
+    End Function
+    Sub Populate_Datagrind(ByVal nID() As Integer,
+                           ByVal loc() As String,
+                           ByVal name() As String,
+                           ByVal surName() As String,
+                           ByVal jump() As Integer)
+
+
+
+        DataGridView1.ColumnCount = 5
+        DataGridView1.Columns(0).Name = "EntryID"
+        DataGridView1.Columns(1).Name = "Location"
+        DataGridView1.Columns(2).Name = "Forename"
+        DataGridView1.Columns(3).Name = "Surname"
+        DataGridView1.Columns(4).Name = "Jump"
+
+        For j As Integer = 0 To 29
+            Dim x As String() = {nID(j), loc(j), name(j), surName(j), jump(j)}
+
+            DataGridView1.Rows.Add(x)
+        Next
+
+    End Sub
+
+    Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
+
+
+    End Sub
+
+    Function Maximum_Jump(ByVal jump() As Integer) As Integer
+        Dim Max_jum As Integer = jump(0)
+
+        For index = 0 To 29
+            If Max_jum < jump(index + 1) Then
+                Max_jum = jump(index)
+            End If
+
+        Next
+        Return Max_jum
+    End Function
+
+
+End Class
